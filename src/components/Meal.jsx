@@ -9,7 +9,7 @@ export default function Meal() {
 
     // const [loadMeals, setLoadMeals] = useState([])
 
-    const {data: loadMeals, error, loading} = useFetch('http://localhost:3000/meals', requestConfig, [])
+    const {data: loadMeals, error, loading} = useFetch('http://localhost:3001/meals', requestConfig, [])
 
     if(loading){
         return <p className='center'>loading......</p>

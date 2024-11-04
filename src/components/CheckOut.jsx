@@ -17,7 +17,7 @@ const requestConfig = {
 
 export default function CheckOut() {
 
-    const { data, error, loading: isSending, sendRequest, clearData } = useFetch('http://localhost:3000/orders', requestConfig)
+    const { data, error, loading: isSending, sendRequest, clearData } = useFetch('http://localhost:3001/orders', requestConfig)
     const cartCtx = useContext(CartContext)
     const userCtx = useContext(UserPogressContext)
 
