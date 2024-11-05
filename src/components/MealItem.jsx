@@ -1,15 +1,18 @@
-import React, { useContext } from 'react'
-import { currencyFormatter } from '../util/formatter'
-import Button from './UI/Button'
-import CartContext from './store/CartContext'
-
+import React, { useContext, useState } from 'react';
+import { currencyFormatter } from '../util/formatter';
+import Button from './UI/Button';
+import CartContext from './store/CartContext';
 
 export default function MealItem({ meal }) {
+    const cartcxt = useContext(CartContext);
+    const [showMessage, setShowMessage] = useState(false);
 
-    const cartcxt = useContext(CartContext)
+    function handleAddMealCart() {
+        cartcxt.addItem(meal);
+        setShowMessage(true);
 
-    function handleAddMealCart (){
-        cartcxt.addItem(meal)
+        // Hide the message after 2 seconds
+        setTimeout(() => setShowMessage(false), 2000);
     }
 
     return (
@@ -22,10 +25,16 @@ export default function MealItem({ meal }) {
                     <p className='meal-item-price'>{currencyFormatter.format(meal.price)}</p>
                     <p className='meal-item-description'>{meal.description}</p>
                 </div>
+                
                 <p className='meal-item-actions'>
                     <Button onClick={handleAddMealCart}>Add To Cart</Button>
                 </p>
+
+                {/* Success message */}
+                {showMessage && (
+                    <p className="add-to-cart-message">Item added to cart!</p>
+                )}
             </article>
         </li>
-    )
+    );
 }
